@@ -1,25 +1,26 @@
-import { useEffect } from "react"
-import { IRepo } from "../../interface/repos.interface"
-
 interface IProps {
-    listRepo: IRepo[]
+    id: number;
+    image: string;
+    title?: string;
+    onClick?: () => void;
 }
 
-const List = ({ listRepo }: IProps) => {
+const List = ({ id, image, onClick, title }: IProps) => {
 
+    const handleClick = () => {
+        console.log(onClick)
+        if (onClick) {
+            onClick();
+        }
+    }
 
     return (
-        <div>
-            {listRepo.map(repo => (
-                <div className="bg-white my-4 p-5 flex items-center" key={repo.id}>
-                    <img className="rounded-full h-20" src={repo.owner.avatar_url} alt="" />
-                    <div className="ml-5">
-                        <h1>{repo.full_name}</h1>
-                        <h1>{repo.owner.avatar_url}</h1>
+        <div className="bg-white my-4 p-5 flex items-center" key={id} onClick={handleClick}>
+            <img className="rounded-full h-20" src={image} alt="" />
+            <div className="ml-5">
+                <h1>{title}</h1>
 
-                    </div>
-                </div>
-            ))}
+            </div>
         </div>
     )
 }
