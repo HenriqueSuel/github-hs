@@ -5,6 +5,7 @@ import { List } from "../../components/list";
 import { get } from "../../services/api.services";
 import { useNavigate } from "react-router-dom";
 import { IUser } from "../../interface/user.interface";
+import { Component01 } from "../../components/componente01";
 
 
 
@@ -27,7 +28,9 @@ const Home = () => {
 
     return (
         <div className="App container pt-16">
-            <h1 className="text-6xl font-bold md:w-1/2 mb-16">Explore repositórios no Github</h1>
+
+            <Component01 />
+       {/*      <h1 className="text-6xl font-bold md:w-1/2 mb-16">Explore repositórios no Github</h1>
 
             <section className='flex'>
                 <Input value={inputValue} onChange={setInputValue} />
@@ -39,7 +42,7 @@ const Home = () => {
                     <List key={item.id} id={item.id} image={item.avatar_url} title={item.name} onClick={() => handleNavigateRepos(item.login)} />
                 ))}
 
-            </section>
+            </section> */}
 
         </div>
     )
