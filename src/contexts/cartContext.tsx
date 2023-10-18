@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { get } from "../services/api.services";
 
 interface ICart {
     title: string;
@@ -25,7 +26,13 @@ const CartProvider = ({ children }: ICartProviderProps) => {
     }
 
     useEffect(() => {
-        console.log('aqui está')
+
+        const onMount = async () => {
+            const lista = await get('users/henriqueSuel');
+            console.log(lista);
+        }
+
+        onMount();
     }, [])
 
 
