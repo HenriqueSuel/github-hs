@@ -1,23 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { get } from "../../services/api.services";
-import { IRepo } from "../../interface/repos.interface";
 import { List } from "../../components/list";
+import { useGithub } from "../../contexts/githubContext";
 
 
 const Repos = () => {
-
-    const [listRepos, setListRepos] = useState<IRepo[]>([]);
+    const { getReposGithub, listRepos } = useGithub();
 
     const { username } = useParams();
 
 
     useEffect(() => {
         const onMount = async () => {
-            const result = await get(`users/${username}/repos`);
-
-            console.log(result)
-            setListRepos(result.data)
+            if (username) {
+                getReposGithub(username);
+            }
         }
         onMount();
     }, [])
@@ -29,10 +26,12 @@ const Repos = () => {
 
             <section>
                 {listRepos.map(item => (
-                    <List key={item.id} id={item.id} image={item.owner.avatar_url}  />
+                    <List key={item.id} id={item.id} image={item.owner.avatar_url} />
                 ))}
 
             </section>
+
+
 
         </div>
     )
